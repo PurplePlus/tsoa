@@ -551,6 +551,7 @@ function getModelProperties(node: UsableDeclaration, genericTypes?: ts.NodeArray
         }
 
         return {
+          default: getNodeDefault(propertyDeclaration),
           description: getNodeDescription(propertyDeclaration),
           format: getNodeFormat(propertyDeclaration),
           name: identifier.text,
@@ -713,6 +714,10 @@ function getNodeDescription(node: UsableDeclaration | ts.PropertyDeclaration | t
 
 function getNodeFormat(node: UsableDeclaration | ts.PropertyDeclaration | ts.ParameterDeclaration | ts.EnumDeclaration) {
   return getJSDocComment(node, 'format');
+}
+
+function getNodeDefault(node: UsableDeclaration | ts.PropertyDeclaration | ts.ParameterDeclaration | ts.EnumDeclaration) {
+  return getJSDocComment(node, 'default');
 }
 
 function getNodeExample(node: UsableDeclaration | ts.PropertyDeclaration | ts.ParameterDeclaration | ts.EnumDeclaration) {
